@@ -1,4 +1,4 @@
-# ============================================================================
+# ============================================================================ 
 # Face Model - Direct Database Comparison
 # ============================================================================
 
@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import threading
 from insightface.app import FaceAnalysis
-from utils import load_posts, cosine_similarity
+from utils import get_all_posts, cosine_similarity  # تعديل هنا
 
 _face_app = None
 _face_app_lock = threading.Lock()
@@ -56,7 +56,7 @@ def get_face_embedding_from_image(image):
 def compare_embedding_with_posts(embedding: np.ndarray) -> float:
 
     try:
-        posts = load_posts()
+        posts = get_all_posts()  # تعديل هنا
         if not posts:
             return 0.0
 
@@ -101,7 +101,7 @@ def images_to_embedding_list(image_paths, index_manager=None):
         return embeddings[0]
 
     try:
-        posts = load_posts()
+        posts = get_all_posts()  # تعديل هنا
         if posts and len(posts) > 0:
             print(f"[INFO] Comparing {len(embeddings)} images with {len(posts)} posts...")
 
